@@ -1,0 +1,66 @@
+/*
+Assignment 1 : Searching Algorithms
+Set B
+
+a) Read the data from file 'cities.txt' containing names of cities and their STD codes. Accept a
+name of the city from user and use linear search algorithm to check whether the name is
+present in the file and output the STD code, otherwise output “city not in the list”.
+
+Search whether a city is present in the file or not by using Linear Search Algorithm
+
+Name:      Varandeep Singh Bhalla
+Roll-No:   8
+Div:       A
+Class:     SY
+
+*/
+
+
+#include<stdio.h>
+#include<string.h>
+
+typedef struct {
+    char cityName[20];
+    int cityCode;
+} city;
+
+int fileRead(city array[20]) {
+    FILE *fp;
+    int i=0;
+    fp=fopen("C:\\Users\\Varan\\Desktop\\Code\\WadiaCollege\\CS_Practicals\\Assignment1\\cities.txt","r");
+    if(fp==NULL)
+        printf("Error Occured");
+    else {
+        while(! feof(fp)) {
+            fscanf(fp,"%s%d", array[i].cityName, &array[i].cityCode);
+            i++;
+        }
+        fclose(fp);
+    }
+    return i;
+}
+
+int checkCityPresent(char key[], city array[], int countOfCities) {	// Using Linear Search Algorithm
+    for (int i = 0; i < countOfCities; i++) {
+        if (! strcmp(key, array[i].cityName))
+            return array[i].cityCode;
+    }
+    return -1;
+}
+
+int main() {
+    city array[20];
+    char key[20];
+    int countOfCities;
+    countOfCities = fileRead(array);
+    printf("\nEnter city name to check whether its present in the file or not:\n");
+    scanf("%s", key);
+    int result;
+    result = checkCityPresent(key, array, countOfCities);
+    if (result == -1)
+        printf("\n%s is not present in the list", key);
+    else
+        printf("\n%s is present in the list\n%s's STD code is %d", key, key, result);
+
+    return 0;
+}

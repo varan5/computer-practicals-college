@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+void generate(int[], int);
+void mergeSort(int[], int, int);
+void merge(int[], int, int, int);
+int main()
+{
+    int array[20], n, i, num, flag = 0;
+    printf("Enter the number of elements\n");
+    scanf("%d", &n);
+    generate(array, n);
+    printf("unsorted elements are\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("\n%d", array[i]);
+    }
+    printf("\n");
+    mergeSort(array, 0, n - 1);
+    printf("\nSorted elements are:-\n");
+    for (i = 0; i < n; i++)
+    {
+        printf("\n%d", array[i]);
+    }
+    return 0;
+}
+void generate(int a[], int n)
+{
+    int i;
+    srand(time(0));
+    for (i = 0; i < n; i++)
+    {
+        a[i] = rand() % 100;
+    }
+}
+void mergeSort(int a[], int low, int high)
+{
+    int mid;
+    if (low < high)
+    {
+        mid = (low + high) / 2;
+        mergeSort(a, low, mid);
+        mergeSort(a, mid + 1, high);
+        merge(a, low, mid, high);
+    }
+}
+
+
+
+void merge(int a[],int low,int mid,int high)
+{
+    int i,j,k,b[20];
+    i=low;
+    j=mid+1;
+    k=0;
+    while((i<=mid) && (j<=high))
+    {
+        if(a[i]<=a[j])
+            b[k++]=a[i++];
+        else
+            b[k++]=a[j++];
+    }
+    while(i<=mid)
+        b[k++]=a[i++];
+    while(j<=high)
+        b[k++]=a[j++];
+    for(i=low,k=0;i<=high;i++,k++)
+        a[i]=b[k];
+}

@@ -1,0 +1,58 @@
+/*
+Assignment 1: Searching Algorithms
+Set A
+
+c) Accept n sorted values in array from user. Accept a value x from user and use binary
+search algorithm to check whether the number is present in sorted array or not and output the
+position if the number is present.
+
+
+Binary Search Algorithm
+Time O(logn)    || Space O(1)
+
+Name:      Varandeep Singh Bhalla
+Roll-No:   8
+Div:       A
+Class:     SY
+*/
+
+#include <stdio.h>
+
+int binarySearch(int array[], int n, int key) {
+    int begin = 0;
+    int end = n - 1;
+    int mid;
+    while (begin <= end) {
+        mid = (begin + end) / 2;
+        if (array[mid] == key)
+            return mid;
+        else if (array[mid] > key)
+            end = mid -1;
+        else    // array[mid] < key
+            begin = mid + 1;
+    }
+    return -1;  // not found
+}
+
+void acceptArrayElements(int array[], int n) {
+    int i;
+    printf("Enter %d elements", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+}
+
+int main() {
+    int array[20];
+    int key, n, position;
+    printf("How many numbers in the array:\n");
+    scanf("%d", &n);
+    acceptArrayElements(array, n);
+    printf("Enter element to be searched in the array\n");
+    scanf("%d", &key);
+    position = binarySearch(array, n, key);
+    if (position == -1)
+        printf("%d not found", key);
+    else
+        printf("%d found at index %d", key, position);
+    return 0;
+}

@@ -1,0 +1,4 @@
+daivik	30	300
+devki	40	400
+kunal	20	200
+siddharth	10	100

@@ -1,0 +1,52 @@
+/*
+Assignment 1: Searching Algorithms
+Set A
+
+b) Accept n values in array from user. Accept a value x from user and use sentinel linear
+search algorithm to check whether the number is present in the array or not and output the
+position if the number is present
+
+Sentinel Linear Search Algorithm
+Time O(n)    || Space O(1)
+
+Name:      Varandeep Singh Bhalla
+Roll-No:   8
+Div:       A
+Class:     SY
+*/
+
+#include <stdio.h>
+
+int sentinelLinearSearch(int array[], int n, int key) {
+    int i = 0;
+    array[n] = key;
+    while (array[i] != key)
+        i++;
+    if (i == n)
+        return -1;
+    else
+        return i;
+}
+
+void acceptArrayElements(int array[], int n) {
+    int i;
+    printf("Enter %d elements\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+}
+
+int main() {
+    int array[20];
+    int key, n, position;
+    printf("How many numbers in the array:\n");
+    scanf("%d", &n);
+    acceptArrayElements(array, n);
+    printf("Enter element to be searched in the array\n");
+    scanf("%d", &key);
+    position = sentinelLinearSearch(array, n, key);
+    if (position == -1)
+        printf("%d not found", key);
+    else
+        printf("%d found at index %d", key, position);
+    return 0;
+}

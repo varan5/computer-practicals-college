@@ -1,0 +1,49 @@
+/*
+Assignment 2: Sorting Algorithms
+Set A
+
+b) Sort a random array of n integers (create a random array of n integers) in ascending order
+by using insertion sort algorithm.
+*/
+// Time: O(n^2)  || Space: O(1) 
+
+#include<stdio.h>
+
+void acceptArrayElements(int array[], int length) {
+    printf("\nEnter elements to sort: ");
+    int i;
+    for (i = 0; i < length; i++)
+        scanf("%d", &array[i]);
+}
+
+void insertionSortAlgorithm(int array[], int length) {
+    int i, j, key;
+    for (i = 1; i < length; i++) {
+        key = array[i];
+        for (j = i -1; j >= 0; j--) {
+            if(key < array[j])
+                array[j+1] = array[j];
+            else
+                break;
+        }
+        array[j+1] = key;
+    }
+}
+
+void printArrayElements(int array[], int length) {
+    int i;
+    printf("\n\nSorted array elements are: ");
+    for (i = 0; i < length; i++)
+        printf("%d  ", array[i]);
+}
+
+
+int main() {
+    int array[100], i, n;
+    printf("How many elements in your array?");
+    scanf("%d", &n);
+    acceptArrayElements(array, n);
+    insertionSortAlgorithm(array, n);
+    printArrayElements(array, n);
+    return 0;
+}
