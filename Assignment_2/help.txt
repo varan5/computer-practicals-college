@@ -1,0 +1,284 @@
+
+
+ii) Insertion Sort
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+  char name[10];
+  int age;
+  float salary;
+}EMPLOYEE;
+EMPLOYEE E[50];
+int readfile (EMPLOYEE *P)
+{
+  int j = 0;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      while (!feof (fp))
+    {
+      fscanf (fp, "%s %d %f",P[j].name, &P[j].age, &P[j].salary);
+      j++;
+    }
+      fclose (fp);
+    }
+  return j;
+}
+int main ()
+{
+  int n,i,j,temp;
+  char S[10];
+  FILE *fp;
+  float b;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      n = readfile (E);    
+     for(i=0; i<n; i++)
+   {
+       temp=E[i].age;
+       strcpy(S,E[i].name);
+       b=E[i].salary;
+       j=i-1;
+       while(j >= 0 && temp <= E[j].age)
+       {
+            E[j+1].age=E[j].age;
+            strcpy(E[j+1].name,E[j].name);
+            E[j+1].salary=E[j].salary;
+            j--;
+       }
+     E[j+1].age=temp;
+     strcpy(E[j+1].name,S);
+     E[j+1].salary=b;
+   }            
+      if ((fp = fopen ("output.txt", "w")) != NULL)
+        {
+         for (i = 0; i < n; i++)
+           fprintf (fp, "%s %d %f \n", E[i].name, E[i].age, E[i].salary);
+        }
+        printf("\n-----Sorting Successful  Kindly open 'output.txt' for the o/p \n");
+        fclose(fp);  
+    }
+  else
+    printf ("\n File was not created.\n");
+}
+
+iii) Selection Sort
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+  char name[10];
+  int age;
+  float salary;
+}EMPLOYEE;
+EMPLOYEE E[50];
+int readfile (EMPLOYEE *P)
+{
+  int j = 0;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      while (!feof (fp))
+    {
+      fscanf (fp, "%s %d %f",P[j].name, &P[j].age, &P[j].salary);
+      j++;
+    }
+      fclose (fp);
+    }
+  return j;
+}
+int main ()
+{
+  int n,i,j,temp,loc;
+  char S[10];
+  FILE *fp;
+  float b;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      n = readfile (E);    
+    for(i=0; i<n-1; i++)
+   {
+       loc=i;
+       for(j=i+1;j<n; j++)
+       {
+           if(E[loc].age > E[j].age)
+            {
+                loc=j;
+            }
+       }
+       if(loc != j)
+       {
+           temp=E[i].age;
+           strcpy(S,E[i].name);
+           b=E[i].salary;
+           E[i].age=E[loc].age;
+           strcpy(E[i].name,E[loc].name);
+           E[i].salary=E[loc].salary;
+           E[loc].age=temp;
+           strcpy(E[loc].name,S);
+           E[loc].salary=b;
+       }
+   }     
+      if ((fp = fopen ("output.txt", "w")) != NULL)
+        {
+         for (i = 0; i < n; i++)
+           fprintf (fp, "%s %d %f \n", E[i].name, E[i].age, E[i].salary);
+        }
+      printf("\n-----Sorting Successful  Kindly open 'output.txt' for the o/p \n");	
+	fclose(fp);
+    }
+  else
+    printf ("\n oops!!!   File was not created -----\n");
+}
+
+
+2)
+i) Bubble Sort
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+  char name[10];
+  int age;
+  float salary; 
+}EMPLOYEE;
+EMPLOYEE E[50];
+int readfile (EMPLOYEE *P)
+{
+  int j = 0;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      while (!feof (fp))
+    {
+      fscanf (fp, "%s %d %f",P[j].name, &P[j].age, &P[j].salary);
+      j++;
+    }
+      fclose (fp);
+    }
+  return j;
+}
+int main ()
+{
+  int n,i,j,temp;
+  char S[10];
+  float b;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      n = readfile (E);
+     for (i = 0; i < n; i++)
+    {
+      for (j = i + 1; j < n; j++)
+    {
+      if (strcmp(E[i].name,E[j].name)>0)
+        {
+          temp = E[i].age;
+          strcpy (S, E[i].name);
+          b = E[i].salary;
+          E[i].age = E[j].age;
+          strcpy (E[i].name, E[j].name);
+          E[i].salary=E[j].salary;
+          E[j].age = temp;
+          strcpy (E[j].name, S);
+          E[j].salary=b;   
+        }
+    }
+    }     
+      if ((fp = fopen ("output.txt","w")) != NULL)
+        {
+         for (i = 0; i < n; i++)
+           fprintf (fp,"%s %d %f \n",E[i].name, E[i].age, E[i].salary);
+        }
+	printf("\n-----Sorting Successful  Kindly open 'output.txt' for the o/p \n");
+	fclose(fp);
+    }
+  else
+    printf ("\n File was not created.\n");
+}
+
+ii) Insertion Sort
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+  char name[10];
+  int age;
+  float salary;
+}EMPLOYEE;
+EMPLOYEE E[50];
+int readfile (EMPLOYEE *P)
+{
+  int j = 0;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      while (!feof (fp))
+    {
+      fscanf (fp, "%s %d %f",P[j].name, &P[j].age, &P[j].salary);
+      j++;
+    }
+      fclose (fp);
+    }
+  return j;
+}
+int main ()
+{
+  int n,i,j,temp;
+  char S[10];
+  FILE *fp;
+  float b;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      n = readfile (E);     
+     for(i=0; i<n; i++)
+   {
+       temp=E[i].age;
+       strcpy(S,E[i].name);
+       b=E[i].salary;
+       j=i-1;
+       while(j >= 0 && strcmp(S,E[j].name)<0)
+       {
+            E[j+1].age=E[j].age;
+            strcpy(E[j+1].name,E[j].name);
+            E[j+1].salary=E[j].salary;
+            j--;
+       }
+     E[j+1].age=temp;
+     strcpy(E[j+1].name,S);
+     E[j+1].salary=b;
+   }            
+      if ((fp = fopen ("output.txt", "w")) != NULL)
+        {
+         for (i = 0; i < n; i++)
+           fprintf (fp, "%s %d %f \n", E[i].name, E[i].age, E[i].salary);
+        }
+	printf("\n-----Sorting Successful  Kindly open 'output.txt' for the o/p \n");
+	fclose(fp);  
+    }
+  else
+    printf ("\n File was not created.\n");
+}
+
+iii) Selection Sort
+#include<stdio.h>
+#include<string.h>
+typedef struct
+{
+  char name[10];
+  int age;
+  float salary;
+}EMPLOYEE;
+EMPLOYEE E[50];
+int readfile (EMPLOYEE *P)
+{
+  int j = 0;
+  FILE *fp;
+  if ((fp = fopen ("employee.txt", "r")) != NULL)
+    {
+      while (!feof (fp))
+    {
+      fscanf (fp, "%s %d %f",P[j].name, &P[j].age, &P[j].salary);
+      j++;
+    }
